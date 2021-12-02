@@ -17,18 +17,18 @@
         <div class="menu-item">关于我们</div>
       </div>
     </van-popup>
-    <div class="title">
+    <div class="title" @click="showTab(0)">
       <div class="logo-wrap">
         <img src="@/assets/logo.png">
       </div>
       <span>FC SPARTA</span>
     </div>
     <div class="nav">
-      <div class="intro item">
+      <div class="intro item" @click="showTab(1)">
         介绍
       </div>
       <div class="interval"></div>
-      <div class="players item" @click="showPlayers">
+      <div class="players item" @click="showTab(2)">
         <i class="iconfont icon-gengyishi"></i>
         更衣室
       </div>
@@ -39,7 +39,7 @@
       </div>
     </div>
     <!-- 球队主页展示 -->
-    <div class="home-detail" v-if="tabIndex===1">
+    <div class="home-detail" v-if="tabIndex===0">
       <van-swipe class="my-swipe" :autoplay="5000" indicator-color="white">
         <van-swipe-item>
           <img src="@/assets/groupPhoto/groupPhoto (1).jpg">
@@ -77,6 +77,11 @@
         </div>
       </div>
     </div>
+    <!-- 球队介绍 -->
+    <div class="introduction" v-if="tabIndex===1">
+      球队介绍
+    </div>
+    <!-- 球队阵容展示 -->
     <div class="player-detail"  v-if="tabIndex===2">
       <div class="title">球队阵容</div>
       <div class="player-wrap">
@@ -350,7 +355,7 @@ export default {
       //显示菜单弹出层
       show: false,
       //导航tab展示
-      tabIndex:1,
+      tabIndex:0,
       //球员信息列表
       playerList:playerList
     }
@@ -359,8 +364,8 @@ export default {
     showPopup() {
       this.show = true
     },
-    showPlayers(){
-      this.tabIndex = 2
+    showTab(index){
+      this.tabIndex = index
     }
   }
 }
